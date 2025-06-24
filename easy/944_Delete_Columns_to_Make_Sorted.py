@@ -1,19 +1,11 @@
-def minDeletionSize(strs):
-    count_delete = 0
-    n = len(strs)
-    for i in range(len(strs[0])):
-        column = ''
-        for j in range(n):
-            column += strs[j][i]
-        print(column)
-        if column != sorted("".join(column)):
-            count_delete += 1
-    return count_delete
+class Solution:
+    def minDeletionSize(self, strs: List[str]) -> int:
+        count_delete = 0
+        n = len(strs)
+        for i in range(len(strs[0])):
+            for j in range(n-1):
+                if strs[j][i] > strs[j+1][i]:
+                    count_delete += 1
+                    break
 
-print(minDeletionSize(["abc", "bce", "cae"]))
-
-s = 'abcd'
-d = ''.join(sorted(s))
-print(d)
-print(s == d)
-        
+        return count_delete
